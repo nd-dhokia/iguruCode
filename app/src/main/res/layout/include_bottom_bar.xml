@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_53sdp"
+    android:id="@+id/llBottonBar"
+    android:background="@color/red">
+
+    <RadioGroup
+        android:id="@+id/radioGrp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <RadioButton
+            android:id="@+id/rbNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/btm_selector_news"
+            android:drawablePadding="@dimen/_minus5sdp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp" />
+
+        <RadioButton
+            android:id="@+id/rbRoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/btm_selector_roster"
+            android:drawablePadding="@dimen/_minus5sdp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp" />
+
+        <RadioButton
+            android:id="@+id/rbChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/btm_selector_chat"
+            android:drawablePadding="@dimen/_minus5sdp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp" />
+
+        <RadioButton
+            android:id="@+id/rbMatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/btm_selector_matches"
+            android:drawablePadding="@dimen/_minus5sdp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp" />
+
+        <RadioButton
+            android:id="@+id/rbVideos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableTop="@drawable/btm_selector_videos"
+            android:drawablePadding="@dimen/_minus5sdp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp" />
+    </RadioGroup>
+</LinearLayout>
