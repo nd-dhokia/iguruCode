@@ -162,12 +162,16 @@ public class NewsFragment extends BaseFragment {
 
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(25));
+
                 Glide.with(getActivity()).
                         load(data.getUrlToImage())
                         .thumbnail(Glide.with(getContext()).load(R.drawable.ic_launcher_background))
                         .apply(requestOptions)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontAnimate()
                         .into(holder.imgApp);
+
+
 
             }
         };
