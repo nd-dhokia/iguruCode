@@ -49,7 +49,7 @@ import retrofit2.Call;
 public class NewsFragment extends BaseFragment {
     Unbinder unbinder;
 
-    GenericAdapter<String, HomeHolder> adapter;
+
     @BindView(R.id.rvHome)
     RecyclerView rvHome;
     @BindView(R.id.imgTopbarLeft)
@@ -74,6 +74,8 @@ public class NewsFragment extends BaseFragment {
     RadioGroup radioGrp;
     @BindView(R.id.llBottonBar)
     LinearLayout llBottonBar;
+
+    GenericAdapter<Article, HomeHolder> adapter;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -127,7 +129,6 @@ public class NewsFragment extends BaseFragment {
             @Override
             public void success(Root data) {
                 DebugLog.e("Api call success : " + data.getStatus());
-                DebugLog.e("Api call success : " + data.getArticles().size());
                 setAdapter(data.getArticles());
             }
 
@@ -145,38 +146,46 @@ public class NewsFragment extends BaseFragment {
     }
 
     private void setAdapter(List<Article> articles) {
-//        final List<String> data = getStringList(50, "Data");
-        GenericAdapter<Article, HomeHolder> adapter = new GenericAdapter<Article, HomeHolder>(R.layout.row_home, HomeHolder.class, articles) {
-
-            @Override
-            public void loadMore() {
-
-            }
-
-            @Override
-            public void setViewHolderData(HomeHolder holder, final Article data, final int position) {
-                holder.txtUserName.setText(data.getAuthor());
-                holder.txtTimeStamp.setText(data.getPublishedAt());
-                holder.txtTitle.setText(data.getTitle());
-                holder.txtDiscription.setText(data.getContent());
-
-                RequestOptions requestOptions = new RequestOptions();
-                requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(25));
-
-                Glide.with(getActivity()).
-                        load(data.getUrlToImage())
-                        .thumbnail(Glide.with(getContext()).load(R.drawable.ic_launcher_background))
-                        .apply(requestOptions)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .dontAnimate()
-                        .into(holder.imgApp);
+        DebugLog.e("articles : " + articles.size());
+//        int page_total = (int) Math.ceil(articles.size() / 10);
+//        int page_rec = 10;
+//        int page_temp = 1;
+        if (adapter == null) {
 
 
+            adapter = new GenericAdapter<Article, HomeHolder>(R.layout.row_home, HomeHolder.class, articles) {
+                @Override
+                public void setViewHolderData(HomeHolder holder, final Article data, final int position) {
 
-            }
-        };
-        if (rvHome != null)
-            rvHome.setAdapter(adapter);
+                    holder.txtUserName.setText(data.getAuthor());
+                    holder.txtTimeStamp.setText(data.getPublishedAt());
+                    holder.txtTitle.setText(data.getTitle());
+                    holder.txtDiscription.setText(data.getContent());
+
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(25));
+
+                    Glide.with(getActivity()).
+                            load(data.getUrlToImage())
+                            .thumbnail(Glide.with(getContext()).load(R.drawable.ic_launcher_background))
+                            .apply(requestOptions)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .dontAnimate()
+                            .into(holder.imgApp);
+
+//                    if (position == page_rec) {
+////                        page_temp += 1;
+//                    }
+                }
+
+                @Override
+                public void loadMore() {
+
+                }
+            };
+            if (rvHome != null)
+                rvHome.setAdapter(adapter);
+        }
     }
 
     @Override
